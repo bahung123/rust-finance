@@ -18,7 +18,9 @@ permissions: {}
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  # OCI image references must be lowercase. Keep this explicit so signing and
+  # attestations use the same canonical GHCR name as docker/metadata-action.
+  IMAGE_NAME: ashutosh0x/rust-finance
 
 jobs:
   # ── Build & push multi-arch Docker image ──────────────────────
