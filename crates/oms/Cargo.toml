@@ -2,6 +2,7 @@
 name = "oms"
 version = "0.1.0"
 edition = "2021"
+publish = false
 description = "Order management system for RustForge"
 license.workspace = true
 repository.workspace = true

@@ -2,6 +2,7 @@
 name = "event_bus"
 version = "0.1.0"
 edition = "2021"
+publish = false
 description = "Async event bus for inter-component communication in RustForge"
 license.workspace = true
 repository.workspace = true

@@ -57,7 +57,7 @@ impl FinnhubWs {
         // Subscribe to symbols
         for symbol in &self.symbols {
             let msg = format!(r#"{{"type":"subscribe","symbol":"{}"}}"#, symbol);
-            write.send(Message::Text(msg)).await?;
+            write.send(Message::Text(msg.into())).await?;
         }
 
         while let Some(msg) = read.next().await {

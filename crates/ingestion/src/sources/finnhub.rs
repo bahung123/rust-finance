@@ -62,7 +62,7 @@ impl MarketDataSource for FinnhubSource {
         // Subscribe to all symbols (supports NSE:, BSE:, etc. prefixes)
         for symbol in &sub.symbols {
             let msg = format!(r#"{{"type":"subscribe","symbol":"{}"}}"#, symbol);
-            write.send(Message::Text(msg)).await.map_err(|e| {
+            write.send(Message::Text(msg.into())).await.map_err(|e| {
                 IngestionError::ConnectionFailed(format!("Subscribe failed: {}", e))
             })?;
             info!("Finnhub subscribed: {}", symbol);

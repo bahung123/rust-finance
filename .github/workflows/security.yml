@@ -43,13 +43,7 @@ jobs:
       - name: Install and run cargo-audit
         run: |
           cargo install cargo-audit --locked
-          # Ignore rustls-webpki CVEs from transitive dep jsonschema→reqwest@0.11→rustls-webpki@0.101
-          # These do NOT affect actual TLS connections (which use rustls-webpki@0.103.13)
-          # TODO: Migrate jsonschema 0.17 → 0.46 to eliminate this transitive chain
-          cargo audit \
-            --ignore RUSTSEC-2026-0098 \
-            --ignore RUSTSEC-2026-0099 \
-            --ignore RUSTSEC-2026-0104
+          cargo audit
 
   # ── 3. cargo-vet: first-party dependency verification ──────
   cargo-vet:

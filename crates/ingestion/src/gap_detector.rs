@@ -228,16 +228,16 @@ impl GapDetector {
         let now = Instant::now();
 
         // Heartbeat check
-        if now.duration_since(self.last_message_at) > self.config.heartbeat_timeout {
-            if self.status == FeedStatus::Live {
-                warn!(
-                    source = %self.source_name,
-                    timeout_ms = self.config.heartbeat_timeout.as_millis(),
-                    "Heartbeat timeout — feed stale"
-                );
-                self.status = FeedStatus::Stale;
-                return GapTickResult::FeedStale;
-            }
+        if now.duration_since(self.last_message_at) > self.config.heartbeat_timeout
+            && self.status == FeedStatus::Live
+        {
+            warn!(
+                source = %self.source_name,
+                timeout_ms = self.config.heartbeat_timeout.as_millis(),
+                "Heartbeat timeout — feed stale"
+            );
+            self.status = FeedStatus::Stale;
+            return GapTickResult::FeedStale;
         }
 
         // Ping interval
@@ -359,24 +359,28 @@ impl GapDetector {
             Some(prev_seq) => {
                 let expected = prev_seq + 1;
 
-                if incoming_seq == expected {
-                    // Perfect — no gap
-                    self.last_seq = Some(incoming_seq);
-                    Some(vec![envelope])
-                } else if incoming_seq > expected {
-                    // GAP DETECTED
-                    let gap_size = incoming_seq - expected;
-                    self.enter_gap_state(expected, incoming_seq - 1, gap_size, envelope);
-                    None
-                } else {
-                    // Duplicate or out-of-order (seq <= last_seq)
-                    debug!(
-                        source = %self.source_name,
-                        incoming = incoming_seq,
-                        last = prev_seq,
-                        "Duplicate/old seq — dropping"
-                    );
-                    None
+                match incoming_seq.cmp(&expected) {
+                    std::cmp::Ordering::Equal => {
+                        // Perfect — no gap
+                        self.last_seq = Some(incoming_seq);
+                        Some(vec![envelope])
+                    }
+                    std::cmp::Ordering::Greater => {
+                        // GAP DETECTED
+                        let gap_size = incoming_seq - expected;
+                        self.enter_gap_state(expected, incoming_seq - 1, gap_size, envelope);
+                        None
+                    }
+                    std::cmp::Ordering::Less => {
+                        // Duplicate or out-of-order (seq <= last_seq)
+                        debug!(
+                            source = %self.source_name,
+                            incoming = incoming_seq,
+                            last = prev_seq,
+                            "Duplicate/old seq — dropping"
+                        );
+                        None
+                    }
                 }
             }
         }

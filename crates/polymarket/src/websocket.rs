@@ -99,13 +99,13 @@ impl PolymarketWs {
                         custom_feature_enabled: Some(true),
                     };
                     write
-                        .send(Message::Text(serde_json::to_string(&sub)?))
+                        .send(Message::Text(serde_json::to_string(&sub)?.into()))
                         .await?;
 
                     // Heartbeat task (ping every 10s)
                     // Note: tungstenite handles ping/pong automatically if correctly configured,
                     // but we can also manually send ping frames.
-                    let _ping_msg = Message::Ping(vec![]);
+                    let _ping_msg = Message::Ping(Vec::new().into());
 
                     // Simple manual heartbeat (since tungstenite requires passing a channel or clone, etc.)
                     // Usually you'd spawn a task with a clone of the sink, or interleave the stream/sink.

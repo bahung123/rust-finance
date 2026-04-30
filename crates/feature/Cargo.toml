@@ -2,6 +2,7 @@
 name = "feature"
 version = "0.1.0"
 edition = "2021"
+publish = false
 description = "Feature engineering and technical indicator computation for RustForge"
 license.workspace = true
 repository.workspace = true

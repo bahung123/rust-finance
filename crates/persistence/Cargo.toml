@@ -2,6 +2,7 @@
 name = "persistence"
 version = "0.1.0"
 edition = "2021"
+publish = false
 description = "Database persistence and caching layer for RustForge"
 license.workspace = true
 repository.workspace = true

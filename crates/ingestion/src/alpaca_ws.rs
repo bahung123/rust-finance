@@ -118,7 +118,9 @@ impl AlpacaWs {
             "key": self.api_key,
             "secret": self.secret_key
         });
-        write.send(Message::Text(auth_msg.to_string())).await?;
+        write
+            .send(Message::Text(auth_msg.to_string().into()))
+            .await?;
 
         // 2. Wait for auth response
         if let Some(Ok(Message::Text(msg))) = read.next().await {
@@ -144,7 +146,7 @@ impl AlpacaWs {
             sub["statuses"] = json!(self.symbols);
         }
 
-        write.send(Message::Text(sub.to_string())).await?;
+        write.send(Message::Text(sub.to_string().into())).await?;
         info!(
             "Subscribed to {} symbols on {} feed",
             self.symbols.len(),

@@ -14,6 +14,8 @@ all-features = true
 # ── Advisories (CVE / RUSTSEC) ────────────────────────────────
 [advisories]
 version = 2
+unmaintained = "workspace"     # fail if first-party deps are abandoned; warn on deep transitive informational advisories
+unsound = "workspace"          # keep actionable direct unsound advisories failing without breaking on ratatui's MSRV-bound lru
 ignore = []                   # e.g. ["RUSTSEC-2024-XXXX"]
 
 # ── Licenses ──────────────────────────────────────────────────
@@ -33,6 +35,8 @@ allow = [
     "Zlib",
     "BSL-1.0",
     "CC0-1.0",
+    "CDLA-Permissive-2.0",
+    "MIT-0",
     "OpenSSL",
     "MPL-2.0",
 ]
@@ -56,6 +60,7 @@ license-files = [{ path = "LICENSE", hash = 0x001c7e6c }]
 [bans]
 multiple-versions = "warn"
 wildcards = "deny"              # prevent `*` version specs
+allow-wildcard-paths = true     # private workspace path deps do not carry registry versions
 highlight = "all"
 
 deny = [

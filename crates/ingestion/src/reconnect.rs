@@ -75,7 +75,7 @@ impl ResilientIngest {
             "method":"logsSubscribe",
             "params":[{"mentions":["TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"]}, {"commitment":"processed"}]
         }).to_string();
-        write.send(Message::Text(subscribe)).await?;
+        write.send(Message::Text(subscribe.into())).await?;
         info!("[WS] subscribed to logs");
 
         // Ping keepalive (Solana drops idle connections)
@@ -84,7 +84,7 @@ impl ResilientIngest {
         loop {
             tokio::select! {
                 _ = ping_interval.tick() => {
-                    write.send(Message::Ping(vec![])).await?;
+                    write.send(Message::Ping(Vec::new().into())).await?;
                 }
 
                 msg = read.next() => {
@@ -101,7 +101,7 @@ impl ResilientIngest {
                         }
 
                         Some(Ok(Message::Ping(_))) => {
-                            write.send(Message::Pong(vec![])).await?;
+                            write.send(Message::Pong(Vec::new().into())).await?;
                         }
 
                         Some(Ok(Message::Close(_))) => {

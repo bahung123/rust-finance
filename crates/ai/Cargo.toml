@@ -2,6 +2,7 @@
 name = "ai"
 version = "0.1.0"
 edition = "2021"
+publish = false
 description = "AI-powered trading signals, LLM integration, and market analysis for RustForge"
 license.workspace = true
 repository.workspace = true
@@ -14,11 +15,11 @@ common = { path = "../common" }
 tokio = { version = "1.0", features = ["full"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-reqwest = { version = "0.11", default-features = false, features = ["rustls-tls", "json"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
 tracing = "0.1"
 anyhow = "1.0"
 thiserror = "1.0"
 chumsky = "0.9" # Optional depending on parsing needs
 event_bus = { path = "../event_bus" }
 schemars = "1.2.1"
-jsonschema = "0.17"
+jsonschema = { version = "0.33", default-features = false }

@@ -177,7 +177,9 @@ async fn run_trade_updates_inner(
         "key": config.api_key,
         "secret": config.secret_key,
     });
-    write.send(Message::Text(auth_msg.to_string())).await?;
+    write
+        .send(Message::Text(auth_msg.to_string().into()))
+        .await?;
     debug!("Trade updates auth sent.");
 
     // Wait for auth response
@@ -212,7 +214,9 @@ async fn run_trade_updates_inner(
             "streams": ["trade_updates"]
         }
     });
-    write.send(Message::Text(sub_msg.to_string())).await?;
+    write
+        .send(Message::Text(sub_msg.to_string().into()))
+        .await?;
     info!("Subscribed to trade_updates stream.");
 
     // ── 3. Process messages ────────────────────────────────────────────────

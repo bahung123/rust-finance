@@ -2,6 +2,7 @@
 name = "pricing"
 version = "0.1.0"
 edition = "2024"
+publish = false
 description = "Options pricing and Black-Scholes model for RustForge"
 license.workspace = true
 repository.workspace = true

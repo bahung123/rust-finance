@@ -82,7 +82,7 @@ impl MarketDataSource for PolymarketSource {
             "assets_ids": asset_ids,
         });
 
-        ws.send(Message::Text(subscribe_msg.to_string()))
+        ws.send(Message::Text(subscribe_msg.to_string().into()))
             .await
             .map_err(|e| IngestionError::ConnectionFailed(e.to_string()))?;
 

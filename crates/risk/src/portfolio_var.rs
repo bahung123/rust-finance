@@ -396,7 +396,7 @@ mod tests {
         assert_eq!(result.correlation_matrix.len(), 4); // 2×2
 
         // Correlation between BTC and ETH should be high (>0.5)
-        let corr_01 = result.correlation_matrix[0 * 2 + 1];
+        let corr_01 = result.correlation_matrix[1];
         assert!(
             corr_01 > 0.3,
             "BTC-ETH correlation should be high, got {:.3}",

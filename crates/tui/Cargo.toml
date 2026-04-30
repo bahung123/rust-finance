@@ -2,6 +2,7 @@
 name = "tui"
 version = "0.1.0"
 edition = "2021"
+publish = false
 description = "Terminal user interface for the RustForge trading dashboard"
 license.workspace = true
 repository.workspace = true
@@ -25,7 +26,7 @@ tokio-retry = "0.3.0"
 ai = { version = "0.1.0", path = "../ai" }
 swarm_sim = { version = "0.1.0", path = "../swarm_sim" }
 chrono.workspace = true
-tokio-tungstenite = "0.20"
+tokio-tungstenite = { version = "0.29", default-features = false, features = ["connect", "rustls-tls-webpki-roots"] }
 futures = "0.3"
 url = "2.5"
 tracing = "0.1"

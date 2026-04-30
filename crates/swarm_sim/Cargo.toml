@@ -2,6 +2,7 @@
 name = "swarm_sim"
 version = "0.1.0"
 edition = "2021"
+publish = false
 description = "Multi-agent financial market swarm simulation engine for RustForge"
 license.workspace = true
 repository.workspace = true
