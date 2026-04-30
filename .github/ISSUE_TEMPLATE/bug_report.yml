@@ -1,0 +1,64 @@
+name: Bug report
+description: Report a reproducible defect in rust-finance.
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Do not include API keys, account IDs, private order data, or secrets.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What went wrong?
+      placeholder: Describe the behavior and the expected result.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Give the smallest command or scenario that reproduces the bug.
+      placeholder: |
+        1. Set USE_MOCK=1
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Market data ingestion
+        - Execution or OMS
+        - Risk or compliance
+        - FIX parser
+        - TUI or CLI
+        - AI or knowledge graph
+        - Persistence or metrics
+        - Build, CI, or release
+        - Documentation
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Commit or version
+      placeholder: git rev-parse --short HEAD
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste relevant redacted logs or terminal output.
+      render: text
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety checklist
+      options:
+        - label: I have removed secrets, API keys, account IDs, and private order data.
+          required: true
+        - label: I reproduced this in mock or paper mode, or explained why that was not possible.
+          required: true

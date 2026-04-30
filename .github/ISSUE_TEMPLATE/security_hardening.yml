@@ -1,0 +1,44 @@
+name: Security hardening
+description: Propose defensive security, supply-chain, parser, or CI hardening work.
+title: "security: "
+labels: ["help wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not disclose exploitable vulnerabilities here. Use GitHub private security advisories or email security@ashutosh0x.dev for sensitive reports.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Security area
+      options:
+        - Supply chain
+        - Secret handling
+        - Parser hardening
+        - Fuzzing
+        - CI permissions
+        - Dependency review
+        - Runtime isolation
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Hardening proposal
+      description: What defensive improvement should be made?
+      placeholder: Describe the defensive change without publishing exploit details.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation idea
+      placeholder: cargo audit, cargo deny, fuzz target, regression test, CI policy check, etc.
+  - type: checkboxes
+    id: disclosure
+    attributes:
+      label: Disclosure safety
+      options:
+        - label: This issue does not contain secrets or weaponized exploit details.
+          required: true

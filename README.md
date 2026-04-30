@@ -37,6 +37,21 @@
 
 ---
 
+## At a Glance
+
+RustFinance Terminal, also called RustForge, is an open-source Rust trading terminal for market-data ingestion, execution research, quantitative risk controls, compliance checks, and terminal dashboards.
+
+- **Try it locally:** `cargo run -p tui --release`
+- **Run the daemon:** `USE_MOCK=1 cargo run -p daemon --release`
+- **Demo:** https://github.com/user-attachments/assets/c769b2c2-cfa0-44bd-a261-99786ea653e1
+- **Community:** [Roadmap](ROADMAP.md), [Contributing](CONTRIBUTING.md), [good first issues](https://github.com/Ashutosh0x/rust-finance/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+- **Funding:** [GitHub Sponsors](https://github.com/sponsors/Ashutosh0x), [Buy Me a Coffee](https://buymeacoffee.com/Ashutosh0x), [funding.json](funding.json)
+- **Recognition:** [Listed in awesome-rust Finance applications](https://github.com/rust-unofficial/awesome-rust/pull/2447)
+
+> Safety: this project is research and open-source infrastructure. It is not financial advice, not a broker, and not a guarantee of live-trading readiness. Use paper trading and independent review before connecting real capital.
+
+---
+
 ## Overview
 
 
@@ -81,6 +96,8 @@ RustForge is an institutional-grade AI trading terminal built in pure Rust. It c
 - [Overview](#overview)
 - [Architecture](#architecture)
 - [Quick Start](#quick-start)
+- [Roadmap](ROADMAP.md)
+- [Contributing](CONTRIBUTING.md)
 - [Features](#features)
 - [TUI Hotkeys](#tui-hotkeys)
 - [Performance](#performance)

@@ -1,66 +1,113 @@
-# Contributing to RustForge Terminal
+# Contributing to RustFinance Terminal
 
-First off, thank you for considering contributing to RustForge! It's people like you that make RustForge such a great tool.
+Thank you for considering a contribution. This project sits at the intersection of Rust systems engineering, market-data ingestion, execution research, risk controls, and security-sensitive automation. Contributions are welcome, but changes must be reviewable, tested, and honest about trading risk.
 
-## General Guidelines
+All contributors are expected to follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
-- **No Emojis:** Please refrain from using emojis in commit messages, documentation, or code comments. We maintain a strictly professional aesthetic.
-- **Commit Messages:** Write clear, concise, and descriptive commit messages. Use the imperative mood (e.g., "Add feature" instead of "Added feature").
-- **Branching:** Create a new branch for each feature or bug fix. Do not commit directly to the `main` branch.
-- **Code Style:** Follow standard Rust formatting guidelines. Run `cargo fmt` before submitting your code.
+## What to Work On
 
-## Getting Started
+Good first contributions:
 
-1.  **Fork** the repository on GitHub.
-2.  **Clone** your fork locally:
-    ```sh
-    git clone https://github.com/YOUR_USERNAME/rust-finance.git
-    cd rust-finance
-    ```
-3.  **Create a branch** for your specific changes:
-    ```sh
-    git checkout -b feature/your-feature-name
-    ```
+- Documentation fixes and diagrams
+- Test coverage for deterministic replay, risk controls, and parsers
+- Small clippy or rustfmt fixes
+- TUI usability fixes
+- Mock exchange data and replay fixtures
 
-## Development Workflow
+Advanced contributions:
 
-### Building
+- Market-data adapters
+- Execution and OMS behavior
+- Risk model correctness
+- FIX parsing and validation
+- Security hardening, fuzzing, and dependency review
 
-Make sure you have Rust installed. Build the entire workspace:
+Do not open pull requests that add live-trading behavior without tests, safety notes, and a clear paper-trading path.
 
-```sh
-cargo build --workspace
+## Development Setup
+
+```powershell
+git clone https://github.com/YOUR_USERNAME/rust-finance.git
+cd rust-finance
+git checkout -b feature/your-change
+cargo build --workspace --all-features
 ```
 
-### Testing
+For local development that should not hit real services:
 
-Before submitting a pull request, ensure all tests pass:
-
-```sh
-cargo test --workspace
+```powershell
+$env:USE_MOCK = "1"
+cargo run -p tui --release
+cargo run -p daemon --release
 ```
 
-## Pull Request Process
+Use a local `.env` file for external API keys. Never commit secrets.
 
-1.  Push your changes to your fork on GitHub.
-2.  Submit a pull request to the `main` branch of the original repository.
-3.  Ensure your PR description clearly states the problem addressed and the solution implemented.
-4.  Link any relevant issues in the PR description (e.g., "Fixes #123").
-5.  Wait for review. Address any feedback provided by the maintainers.
-
-## Setting Up Environment Variables
-
-If you are working on components that require external APIs (like `daemon` or `ingestion`), make sure you have the necessary environment variables set up locally. We recommend creating a `.env` file (which is gitignored) for your local keys:
-
-```sh
+```text
 ANTHROPIC_API_KEY="your_key"
 FINNHUB_API_KEY="your_key"
 ALPACA_API_KEY="your_key"
 ALPACA_SECRET_KEY="your_key"
 ```
 
-## Architecture Notes
+## Required Checks
 
-Please review the architecture diagram in the `README.md` before making significant structural changes to ensure your modifications align with the overall system design.
+Run the focused checks for your change first:
 
-Thank you for contributing!
+```powershell
+cargo fmt --all -- --check
+cargo test --workspace --all-features --no-fail-fast
+```
+
+Before opening a larger PR, run the stricter project gate:
+
+```powershell
+cargo clippy --workspace --all-features --all-targets -- -D warnings -D clippy::all -D clippy::pedantic -D clippy::cargo
+cargo deny check --all-features
+cargo audit
+cargo test --workspace --doc
+```
+
+If a check fails because of a missing local tool, mention that in the PR and include the command output summary.
+
+## Crate Ownership Map
+
+Use this map to route reviews and understand risk:
+
+| Area | Crates | Review Risk |
+|:---|:---|:---|
+| Core types and sequencing | `common`, `event_bus` | High |
+| Market data | `ingestion`, `polymarket`, `feature`, `signals` | High |
+| Execution and order flow | `execution`, `oms`, `fix`, `strategy` | Critical |
+| Risk and compliance | `risk`, `compliance`, `pricing` | Critical |
+| AI and knowledge graph | `ai`, `knowledge_graph`, `ml` | Medium |
+| Storage and observability | `persistence`, `metrics`, `alerts` | Medium |
+| User interfaces | `tui`, `web`, `web-dashboard`, `dashboard`, `cli` | Medium |
+| Simulation and research | `backtest`, `swarm_sim`, `benchmarks` | Medium |
+
+Changes in critical areas need tests and a short explanation of failure modes.
+
+## Pull Request Expectations
+
+- Keep PRs small enough to review in one sitting.
+- Explain the problem, the approach, and the validation performed.
+- Link related issues with `Fixes #123` when appropriate.
+- Include screenshots or terminal output for TUI changes.
+- Include before/after behavior for risk, execution, parser, or replay changes.
+- Do not mix formatting-only changes with functional changes.
+- Do not claim production trading readiness unless the PR only changes documentation that already supports that claim.
+
+## Style
+
+- Use `cargo fmt`.
+- Prefer clear Rust over clever Rust.
+- Avoid new dependencies unless they remove real complexity.
+- Do not add emojis to code, commit messages, or project docs.
+- Keep security-sensitive defaults fail-closed.
+- Keep live-trading features opt-in and mockable.
+
+## Security
+
+Report vulnerabilities through GitHub private security advisories or by emailing `security@ashutosh0x.dev`. Do not open public issues for secrets, auth bypasses, unsafe parsing bugs, or exchange-authentication weaknesses.
+
+See [SECURITY.md](SECURITY.md) for scope and response timelines.

@@ -1,0 +1,48 @@
+name: Feature request
+description: Propose a new capability or improvement.
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user or contributor problem does this solve?
+      placeholder: Explain the workflow pain, missing capability, or research need.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should change?
+      placeholder: Describe the expected behavior, inputs, outputs, and user-facing surface.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Market data ingestion
+        - Execution or OMS
+        - Risk or compliance
+        - Quant signals or pricing
+        - TUI or CLI
+        - AI or knowledge graph
+        - Backtesting or simulation
+        - Documentation or onboarding
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      placeholder: What simpler option did you consider?
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to help implement or test this.
+        - label: This can be implemented without live trading by using mock or paper mode.
