@@ -43,10 +43,11 @@ COPY benchmarks/ benchmarks/
 # Build all workspace binaries in release mode
 # fat LTO + strip is configured in [profile.release] in Cargo.toml
 RUN cargo build --release \
-    -p daemon \
-    -p tui \
-    -p cli \
-    -p backtest --bin benchmark_audit
+        -p daemon \
+        -p tui \
+        -p cli \
+    && cargo build --release \
+        -p backtest --bin benchmark_audit
 
 # ── Runtime stage ──────────────────────────────────────────────────────────
 FROM debian:bookworm-slim AS runtime
