@@ -29,7 +29,6 @@ infra/
 docs/
 fuzz/
 benches/
-benchmarks/
 assets/
 scripts/
 
