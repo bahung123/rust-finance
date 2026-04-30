@@ -1,0 +1,23 @@
+# GitHub reads this file from .github/FUNDING.yml on the default branch.
+# Source: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
+
+# GitHub Sponsors
+github: [Ashutosh0x]
+
+# thanks.dev dependency-graph funding
+thanks_dev: u/gh/Ashutosh0x
+
+# Buy Me a Coffee
+buy_me_a_coffee: Ashutosh0x
+
+# Enable only after the matching accounts/projects exist:
+# polar: Ashutosh0x
+# open_collective: rust-finance
+# ko_fi: Ashutosh0x
+# patreon: Ashutosh0x
+# liberapay: Ashutosh0x
+# issuehunt: Ashutosh0x
+#
+# Do not enable Tidelift here yet:
+# - this workspace currently marks crates as publish = false
+# - GitHub's FUNDING.yml docs do not list a Cargo Tidelift platform token

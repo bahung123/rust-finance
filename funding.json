@@ -1,0 +1,94 @@
+{
+  "$schema": "https://fundingjson.org/schema/v1.1.0.json",
+  "version": "v1.1.0",
+  "entity": {
+    "type": "individual",
+    "role": "maintainer",
+    "name": "Ashutosh0x",
+    "email": "security@ashutosh0x.dev",
+    "description": "Maintainer of rust-finance, an open-source Rust trading terminal focused on real-time market data, execution workflows, quantitative risk controls, compliance checks, and terminal dashboards.",
+    "webpageUrl": {
+      "url": "https://github.com/Ashutosh0x"
+    }
+  },
+  "projects": [
+    {
+      "guid": "rust-finance",
+      "name": "rust-finance",
+      "description": "Open-source AI trading terminal written in Rust. The workspace includes multi-exchange market-data ingestion, execution components, risk models, compliance checks, FIX parsing, persistence, backtesting, and a Ratatui dashboard. Funding supports maintenance, security work, documentation, test coverage, dependency review, and continued development of reliable open-source financial tooling.",
+      "webpageUrl": {
+        "url": "https://github.com/Ashutosh0x/rust-finance"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/Ashutosh0x/rust-finance"
+      },
+      "licenses": ["spdx:MIT"],
+      "tags": [
+        "rust",
+        "finance",
+        "trading",
+        "fintech",
+        "ai",
+        "risk-management",
+        "market-data",
+        "tui",
+        "security",
+        "open-source"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "github-sponsors",
+        "type": "payment-provider",
+        "address": "https://github.com/sponsors/Ashutosh0x",
+        "description": "GitHub Sponsors for one-time or recurring project support."
+      },
+      {
+        "guid": "thanks-dev",
+        "type": "payment-provider",
+        "address": "https://thanks.dev/u/gh/Ashutosh0x",
+        "description": "thanks.dev dependency-graph funding for open-source maintainers."
+      },
+      {
+        "guid": "buy-me-a-coffee",
+        "type": "payment-provider",
+        "address": "https://buymeacoffee.com/Ashutosh0x",
+        "description": "Buy Me a Coffee for one-time community support."
+      }
+    ],
+    "plans": [
+      {
+        "guid": "community-support",
+        "status": "active",
+        "name": "Community support",
+        "description": "Flexible one-time or recurring support for maintenance, documentation, issue triage, and release work.",
+        "amount": 0,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": ["github-sponsors", "thanks-dev", "buy-me-a-coffee"]
+      },
+      {
+        "guid": "security-maintenance",
+        "status": "active",
+        "name": "Security and maintenance grant",
+        "description": "Funding for dependency audits, CI hardening, vulnerability response, parser hardening, fuzzing, and reliability work across the Rust workspace.",
+        "amount": 10000,
+        "currency": "USD",
+        "frequency": "yearly",
+        "channels": ["github-sponsors"]
+      },
+      {
+        "guid": "sustainability",
+        "status": "active",
+        "name": "Project sustainability",
+        "description": "Funding to support sustained development of open-source Rust financial infrastructure, including exchange adapters, risk controls, compliance logic, testing, and user documentation.",
+        "amount": 25000,
+        "currency": "USD",
+        "frequency": "yearly",
+        "channels": ["github-sponsors"]
+      }
+    ]
+  }
+}

@@ -9,6 +9,7 @@
   <br />
   <a href="https://github.com/Ashutosh0x/rust-finance/stargazers"><img src="https://img.shields.io/github/stars/Ashutosh0x/rust-finance?style=for-the-badge&logo=github&color=gold" alt="GitHub stars" /></a>
   <a href="https://github.com/Ashutosh0x/rust-finance/network/members"><img src="https://img.shields.io/github/forks/Ashutosh0x/rust-finance?style=for-the-badge&logo=github&color=silver" alt="GitHub forks" /></a>
+  <a href="https://buymeacoffee.com/Ashutosh0x"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy Me a Coffee" /></a>
   <br />
   <img src="https://img.shields.io/badge/Alpaca-FACC15?style=for-the-badge&logo=alpaca&logoColor=black" alt="Alpaca" />
   <img src="https://img.shields.io/badge/Binance-FCD535?style=for-the-badge&logo=binance&logoColor=black" alt="Binance" />

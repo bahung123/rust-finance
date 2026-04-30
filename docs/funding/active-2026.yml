@@ -1,0 +1,79 @@
+# Funding platform inventory verified on 2026-04-30.
+# This file is documentation only. The machine-consumed files are:
+# - .github/FUNDING.yml
+# - funding.json
+
+verified_sources:
+  github_funding_yml: "https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository"
+  funding_json_schema: "https://fundingjson.org/"
+  floss_fund_faq: "https://floss.fund/faq/"
+  tidelift_supported_ecosystems: "https://support.tidelift.com/hc/en-us/articles/4406293161492-Supported-ecosystems"
+
+enabled_now:
+  - platform: "GitHub Sponsors"
+    repo_file: ".github/FUNDING.yml"
+    key: "github"
+    value: ["Ashutosh0x"]
+    status: "enabled"
+
+  - platform: "thanks.dev"
+    repo_file: ".github/FUNDING.yml"
+    key: "thanks_dev"
+    value: "u/gh/Ashutosh0x"
+    status: "enabled"
+
+  - platform: "Buy Me a Coffee"
+    repo_file: ".github/FUNDING.yml"
+    key: "buy_me_a_coffee"
+    value: "Ashutosh0x"
+    url: "https://buymeacoffee.com/Ashutosh0x"
+    status: "enabled"
+
+  - platform: "FLOSS/fund"
+    repo_file: "funding.json"
+    schema: "https://fundingjson.org/schema/v1.1.0.json"
+    submit_url: "https://dir.floss.fund"
+    status: "manifest-ready"
+    note: "FLOSS/fund uses funding.json, not YAML."
+
+available_after_account_setup:
+  - platform: "Polar"
+    repo_file: ".github/FUNDING.yml"
+    key: "polar"
+    example: "Ashutosh0x"
+    action: "Create/verify Polar account before uncommenting."
+
+  - platform: "Open Collective"
+    repo_file: ".github/FUNDING.yml"
+    key: "open_collective"
+    example: "rust-finance"
+    action: "Create/verify collective slug before uncommenting."
+
+  - platform: "Ko-fi"
+    repo_file: ".github/FUNDING.yml"
+    key: "ko_fi"
+    example: "Ashutosh0x"
+    action: "Create/verify Ko-fi account before uncommenting."
+
+  - platform: "Patreon"
+    repo_file: ".github/FUNDING.yml"
+    key: "patreon"
+    example: "Ashutosh0x"
+    action: "Create/verify Patreon account before uncommenting."
+
+  - platform: "Liberapay"
+    repo_file: ".github/FUNDING.yml"
+    key: "liberapay"
+    example: "Ashutosh0x"
+    action: "Create/verify Liberapay account before uncommenting."
+
+  - platform: "IssueHunt"
+    repo_file: ".github/FUNDING.yml"
+    key: "issuehunt"
+    example: "Ashutosh0x"
+    action: "Create/verify IssueHunt account before uncommenting."
+
+not_enabled:
+  - platform: "Tidelift"
+    reason: "The workspace crates are marked publish = false, so there is no public crates.io package to claim yet."
+    note: "Tidelift supports Rust/Cargo as an ecosystem, but GitHub's FUNDING.yml docs do not currently list a Cargo Tidelift platform token."
