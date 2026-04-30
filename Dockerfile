@@ -37,8 +37,8 @@ WORKDIR /build
 COPY Cargo.toml Cargo.lock ./
 
 # Copy workspace member Cargo.toml files (for dependency resolution)
-# We use a find-and-copy pattern via shell to handle the dynamic crate list.
 COPY crates/ crates/
+COPY benchmarks/ benchmarks/
 
 # Build all workspace binaries in release mode
 # fat LTO + strip is configured in [profile.release] in Cargo.toml
