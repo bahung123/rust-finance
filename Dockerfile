@@ -18,7 +18,8 @@
 # ============================================================================
 
 # ── Build stage ────────────────────────────────────────────────────────────
-FROM rust:1.78-slim-bookworm AS builder
+ARG RUST_VERSION=1.95
+FROM rust:${RUST_VERSION}-slim-bookworm AS builder
 
 # Install build dependencies
 RUN apt-get update && \
