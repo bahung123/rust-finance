@@ -9,7 +9,10 @@ use std::collections::VecDeque;
 use thiserror::Error;
 use tracing::{debug, info, warn};
 
-const ANTHROPIC_API_BASE: &str = "https://api.anthropic.com/v1";
+fn anthropic_api_base() -> String {
+    std::env::var("ANTHROPIC_BASE_URL")
+        .unwrap_or_else(|_| "https://api.anthropic.com/v1".to_string())
+}
 const ANTHROPIC_VERSION: &str = "2023-06-01";
 const COMPACTION_BETA: &str = "message-batches-2024-09-24,interleaved-thinking-2025-05-14";
 
@@ -225,7 +228,7 @@ impl CompactionClient {
 
         let mut req = self
             .http
-            .post(format!("{ANTHROPIC_API_BASE}/messages"))
+            .post(format!("{}/v1/messages", anthropic_api_base()))
             .header("x-api-key", &self.api_key)
             .header("anthropic-version", ANTHROPIC_VERSION)
             .header("anthropic-beta", COMPACTION_BETA)

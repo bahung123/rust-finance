@@ -36,18 +36,22 @@ pub struct ContentBlock {
 pub struct AnthropicClient {
     client: Client,
     api_key: String,
+    base_url: String,
 }
 
 impl AnthropicClient {
     pub fn new(api_key: String) -> Self {
+        let base_url = std::env::var("ANTHROPIC_BASE_URL")
+            .unwrap_or_else(|_| "https://api.anthropic.com".to_string());
         Self {
             client: Client::new(),
             api_key,
+            base_url,
         }
     }
 
     pub async fn send_message(&self, req: MessageRequest) -> Result<String> {
-        let url = "https://api.anthropic.com/v1/messages";
+        let url = format!("{}/v1/messages", self.base_url);
         let res = self
             .client
             .post(url)

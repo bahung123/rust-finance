@@ -238,6 +238,8 @@ async fn call_ollama_json(system: &str, user: &str) -> Result<String> {
 async fn call_groq_json(system: &str, user: &str) -> Result<String> {
     let api_key = std::env::var("GROQ_API_KEY").unwrap_or_else(|_| "mock_key".to_string());
     let model = std::env::var("GROQ_MODEL").unwrap_or_else(|_| "openai/gpt-oss-120b".to_string());
+    let base_url = std::env::var("GROQ_BASE_URL")
+        .unwrap_or_else(|_| "https://api.groq.com/openai/v1".to_string());
     let client = reqwest::Client::new();
 
     // Detect if using a reasoning model (openai/gpt-oss-*)
@@ -267,7 +269,7 @@ async fn call_groq_json(system: &str, user: &str) -> Result<String> {
     };
 
     let resp = client
-        .post("https://api.groq.com/openai/v1/chat/completions")
+        .post(format!("{}/chat/completions", base_url))
         .header("Authorization", format!("Bearer {}", api_key))
         .json(&body)
         .send()
